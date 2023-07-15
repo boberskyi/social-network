@@ -48,7 +48,7 @@ export const NavigationLeft = () => {
     );
 };
 
-const StyledNavLeft = styled.div`
+const StyledNavLeft = styled.header`
   position: fixed;
   top: 0;
   bottom: 0;
