@@ -24,23 +24,23 @@ export const NavigationLeft = () => {
                     <ImNewspaper/>
                     <StyledNavLeftLinkTitle>Newsfeed</StyledNavLeftLinkTitle>
                 </StyledNavLeftLink>
-                <StyledNavLeftLink to={"/"}>
+                <StyledNavLeftLink to={"/timeline"}>
                     <MdOutlineViewTimeline/>
                     <StyledNavLeftLinkTitle>Member timeline</StyledNavLeftLinkTitle>
                 </StyledNavLeftLink>
-                <StyledNavLeftLink to={"/"}>
+                <StyledNavLeftLink to={"/groups"}>
                     <MdGroups/>
                     <StyledNavLeftLinkTitle>Groups</StyledNavLeftLinkTitle>
                 </StyledNavLeftLink>
-                <StyledNavLeftLink to={"/"}>
+                <StyledNavLeftLink to={"/friends"}>
                     <FaUserFriends/>
                     <StyledNavLeftLinkTitle>Friends</StyledNavLeftLinkTitle>
                 </StyledNavLeftLink>
-                <StyledNavLeftLink to={"/"}>
+                <StyledNavLeftLink to={"/gallery"}>
                     <TfiGallery/>
                     <StyledNavLeftLinkTitle>Gallery</StyledNavLeftLinkTitle>
                 </StyledNavLeftLink>
-                <StyledNavLeftLink to={"/"}>
+                <StyledNavLeftLink to={"/videos"}>
                     <LiaVideoSolid/>
                     <StyledNavLeftLinkTitle>Videos</StyledNavLeftLinkTitle>
                 </StyledNavLeftLink>
@@ -88,6 +88,11 @@ const StyledNavLeftLink = styled(NavLink)`
   color: #8793a3;
   padding: 15px 0;
   border-bottom: 1px solid rgba(135, 147, 143, .2);
+  
+  &.active,
+  &:hover{
+    color: #224ed3;
+  }
 `
 const StyledNavLeftLinkTitle = styled.span`
   display: none;
