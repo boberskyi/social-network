@@ -6,42 +6,43 @@ import {MdGroups, MdOutlineForum, MdOutlineViewTimeline} from "react-icons/md";
 import {FaUserFriends} from "react-icons/fa";
 import {TfiGallery} from "react-icons/tfi";
 import {LiaVideoSolid} from "react-icons/lia";
+import {Link, NavLink} from "react-router-dom";
 
 export const NavigationLeft = () => {
     return (
         <StyledNavLeft>
-            <StyledNavLeftTop>
+            <StyledNavLeftTop to={"/"}>
                 <TbHexagonLetterS />
             </StyledNavLeftTop>
 
             <StyledNavLeftBtm>
-                <StyledNavLeftLink>
+                <StyledNavLeftLink to={"/dialogs"}>
+                    <MdOutlineForum/>
+                    <StyledNavLeftLinkTitle>Forums</StyledNavLeftLinkTitle>
+                </StyledNavLeftLink>
+                <StyledNavLeftLink to={"/posts"}>
                     <ImNewspaper/>
                     <StyledNavLeftLinkTitle>Newsfeed</StyledNavLeftLinkTitle>
                 </StyledNavLeftLink>
-                <StyledNavLeftLink>
+                <StyledNavLeftLink to={"/"}>
                     <MdOutlineViewTimeline/>
                     <StyledNavLeftLinkTitle>Member timeline</StyledNavLeftLinkTitle>
                 </StyledNavLeftLink>
-                <StyledNavLeftLink>
+                <StyledNavLeftLink to={"/"}>
                     <MdGroups/>
                     <StyledNavLeftLinkTitle>Groups</StyledNavLeftLinkTitle>
                 </StyledNavLeftLink>
-                <StyledNavLeftLink>
+                <StyledNavLeftLink to={"/"}>
                     <FaUserFriends/>
                     <StyledNavLeftLinkTitle>Friends</StyledNavLeftLinkTitle>
                 </StyledNavLeftLink>
-                <StyledNavLeftLink>
+                <StyledNavLeftLink to={"/"}>
                     <TfiGallery/>
                     <StyledNavLeftLinkTitle>Gallery</StyledNavLeftLinkTitle>
                 </StyledNavLeftLink>
-                <StyledNavLeftLink>
+                <StyledNavLeftLink to={"/"}>
                     <LiaVideoSolid/>
                     <StyledNavLeftLinkTitle>Videos</StyledNavLeftLinkTitle>
-                </StyledNavLeftLink>
-                <StyledNavLeftLink>
-                    <MdOutlineForum/>
-                    <StyledNavLeftLinkTitle>Forums</StyledNavLeftLinkTitle>
                 </StyledNavLeftLink>
             </StyledNavLeftBtm>
         </StyledNavLeft>
@@ -60,7 +61,7 @@ const StyledNavLeft = styled.header`
   display: flex;
   flex-direction: column;
 `
-const StyledNavLeftTop = styled.a`
+const StyledNavLeftTop = styled(Link)`
   background-color: #224ed3;
   text-align: center;
   height: 88px;
@@ -78,7 +79,7 @@ const StyledNavLeftBtm = styled.nav`
   height: 100%;
   gap: 20px;
 `
-const StyledNavLeftLink = styled.a`
+const StyledNavLeftLink = styled(NavLink)`
   position: relative;
   display: flex;
   align-items: center;
