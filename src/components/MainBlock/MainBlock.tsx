@@ -1,21 +1,23 @@
 import React from 'react';
 import {Banner} from "./Banner/Banner";
 import styled from "styled-components";
-import {MainWrapperLeft} from "./MainWrapperLeft/MainWrapperLeft";
-import {MainWrapperRight} from "./MainWrapperRight/MainWrapperRight";
+import {Route, Routes} from "react-router-dom";
+import {Dialogs} from "./Dialogs/Dialogs";
+import {PostsFeed} from "./Posts/PostsFeed";
+import {ErrorPage} from "./ErrorPage/ErrorPage";
 
 export const MainBlock = () => {
     return (
         <StyledMainBlock>
             <Banner/>
             <StyledMainWrapper>
-                {/*Wrapper Left*/}
-                <MainWrapperLeft></MainWrapperLeft>
-                {/*Wrapper Left end*/}
-
-                {/*Wrapper Right*/}
-                <MainWrapperRight></MainWrapperRight>
-                {/*Wrapper Right end*/}
+                <Routes>
+                    <Route path={"/"} element={<Dialogs/>}/>
+                    <Route path={"/dialogs"} element={<Dialogs/>}/>
+                    <Route path={"/posts"} element={<PostsFeed/>}/>
+                    <Route path={"/posts"} element={<PostsFeed/>}/>
+                    <Route path={"/*"} element={<ErrorPage/>}/>
+                </Routes>
             </StyledMainWrapper>
         </StyledMainBlock>
     );
