@@ -31,8 +31,9 @@ const StyledDialogsFriendItm = styled(NavLink)`
   position: relative;
   border-bottom: 1px solid #e5e5e5;
   display: flex;
+
   &.active {
-    background-color: rgba(34, 78, 211, .2);
+    background-color: rgba(0, 186, 255, 0.07);
   }
 `
 const StyledDialogsFriendItmLeft = styled.span`
