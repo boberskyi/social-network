@@ -2,6 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import {DialogsFriendItm} from "./DialogsFriendItm/DialogsFriendItm";
 import {Outlet, Route, Routes} from "react-router-dom";
+import {MsgSendBox} from "./MsgSendBox/MsgSendBox";
 export const Dialogs = () => {
     return (
         <StyledDialogs>
@@ -17,6 +18,7 @@ export const Dialogs = () => {
 
             <StyledDialogsMsgs>
                 <Outlet />
+                <MsgSendBox />
             </StyledDialogsMsgs>
         </StyledDialogs>
     );
