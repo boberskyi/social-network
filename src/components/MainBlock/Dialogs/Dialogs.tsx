@@ -14,6 +14,7 @@ export const Dialogs = () => {
                 <DialogsFriendItm id={'dfi6'} />
                 <DialogsFriendItm id={'dfi7'} />
             </StyledDialogsFriends>
+
             <StyledDialogsMsgs>
                 <Outlet />
             </StyledDialogsMsgs>
@@ -23,6 +24,8 @@ export const Dialogs = () => {
 
 const StyledDialogs = styled.div`
   display: flex;
+  gap: 20px;
+  width: 100%;
 `
 const StyledDialogsFriends = styled.div`
   max-width: 400px;
@@ -38,5 +41,14 @@ const StyledDialogsFriends = styled.div`
 `
 
 const StyledDialogsMsgs = styled.div`
-  
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 8px;
+  background-color: #fff;
+  max-height: 100vh;
+  overflow-y: scroll;
+  padding: 30px;
+  justify-content: space-between;
 `
