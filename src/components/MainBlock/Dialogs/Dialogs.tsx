@@ -1,20 +1,42 @@
 import React from 'react';
 import styled from "styled-components";
-
+import {DialogsFriendItm} from "./DialogsFriendItm/DialogsFriendItm";
+import {Outlet, Route, Routes} from "react-router-dom";
 export const Dialogs = () => {
     return (
         <StyledDialogs>
-            <div>Dialog 1</div>
-            <div>Dialog 2</div>
-            <div>Dialog 3</div>
-            <div>Dialog 4</div>
-            <div>Dialog 5</div>
+            <StyledDialogsFriends>
+                <DialogsFriendItm id={'dfi1'} />
+                <DialogsFriendItm id={'dfi2'} />
+                <DialogsFriendItm id={'dfi3'} />
+                <DialogsFriendItm id={'dfi4'} />
+                <DialogsFriendItm id={'dfi5'} />
+                <DialogsFriendItm id={'dfi6'} />
+                <DialogsFriendItm id={'dfi7'} />
+            </StyledDialogsFriends>
+            <StyledDialogsMsgs>
+                <Outlet />
+            </StyledDialogsMsgs>
         </StyledDialogs>
     );
 };
 
 const StyledDialogs = styled.div`
   display: flex;
+`
+const StyledDialogsFriends = styled.div`
+  max-width: 400px;
+  min-width: 400px;
+  width: 100%;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  max-height: 100vh;
+  overflow-y: scroll;
+  display: flex;
   flex-direction: column;
-  gap: 15px;
+`
+
+const StyledDialogsMsgs = styled.div`
+  
 `

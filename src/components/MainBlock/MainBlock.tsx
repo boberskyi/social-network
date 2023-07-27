@@ -5,6 +5,7 @@ import {Route, Routes} from "react-router-dom";
 import {Dialogs} from "./Dialogs/Dialogs";
 import {PostsFeed} from "./Posts/PostsFeed";
 import {ErrorPage} from "./ErrorPage/ErrorPage";
+import {Messages} from "./Dialogs/Messages/Messages";
 
 export const MainBlock = () => {
     return (
@@ -12,9 +13,10 @@ export const MainBlock = () => {
             <Banner/>
             <StyledMainWrapper>
                 <Routes>
-                    <Route path={"/"} element={<Dialogs/>}/>
-                    <Route path={"/dialogs"} element={<Dialogs/>}/>
-                    <Route path={"/posts"} element={<PostsFeed/>}/>
+                    <Route path={"/"} element={<PostsFeed/>}/>
+                    <Route path={"/dialogs"} element={<Dialogs/>}>
+                        <Route path={":id"} element={<Messages/>}/>
+                    </Route>
                     <Route path={"/posts"} element={<PostsFeed/>}/>
                     <Route path={"/*"} element={<ErrorPage/>}/>
                 </Routes>
