@@ -25,7 +25,7 @@ export const Messages: React.FC = () => {
 const StyledMessages = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 3px;
 `
 interface StyledMessageWrpType {
     sender: 'friend' | 'me'
@@ -40,5 +40,10 @@ const StyledMessageWrp = styled.div<StyledMessageWrpType>`
   }};
 `
 const StyledMessage = styled.div`
-
+  background-color: rgba(13, 199, 245, .3);
+  max-width: 50%;
+  padding: 10px;
+  border-radius: 7px;
+  margin-bottom: 5px;
+  font-size: 12px;
 `
