@@ -1,7 +1,7 @@
 import React from 'react';
 import {Post} from "./Post/Post";
 import styled from "styled-components";
-import {postsType} from "../../../App";
+import {postsType} from "../../../redux/state";
 
 type PostsFeedType = {
     posts: postsType[]

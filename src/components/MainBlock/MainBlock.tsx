@@ -6,21 +6,21 @@ import {Dialogs} from "./Dialogs/Dialogs";
 import {PostsFeed} from "./Posts/PostsFeed";
 import {ErrorPage} from "./ErrorPage/ErrorPage";
 import {Messages} from "./Dialogs/Messages/Messages";
-import {dialogsType, postsType} from "../../App";
+import {dialogsPageType, postsType} from "../../redux/state";
 
 type MainBlockType = {
     posts: postsType[],
-    dialogs: dialogsType[]
+    dialogsPage: dialogsPageType
 }
-export const MainBlock:React.FC<MainBlockType> = ({posts, dialogs}) => {
+export const MainBlock:React.FC<MainBlockType> = ({posts, dialogsPage}) => {
     return (
         <StyledMainBlock>
             <Banner/>
             <StyledMainWrapper>
                 <Routes>
                     <Route path={"/"} element={<PostsFeed posts={posts}/>}/>
-                    <Route path={"/dialogs"} element={<Dialogs dialogs={dialogs}/>}>
-                        <Route path={":id"} element={<Messages/>}/>
+                    <Route path={"/dialogs"} element={<Dialogs dialogs={dialogsPage.dialogs}/>}>
+                        <Route path={":id"} element={<Messages messages={dialogsPage.messages}/>}/>
                     </Route>
                     <Route path={"/posts"} element={<PostsFeed posts={posts}/>}/>
                     <Route path={"/*"} element={<ErrorPage/>}/>

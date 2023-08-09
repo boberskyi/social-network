@@ -1,24 +1,23 @@
 import React from 'react';
 import {useParams} from "react-router-dom";
 import styled from "styled-components";
+import {messagesType} from "../../../../redux/state";
 
-export const Messages: React.FC = () => {
+type MessagesPropsType = {
+    messages: messagesType[]
+}
+export const Messages: React.FC<MessagesPropsType> = ({messages}) => {
     const {id} = useParams();
     return (
         <StyledMessages>
-            {id}
-            <StyledMessageWrp sender={'friend'}>
-                <StyledMessage>Hi, how are you?</StyledMessage>
-            </StyledMessageWrp>
-            <StyledMessageWrp sender={'me'}>
-                <StyledMessage>I'm fine. Sry, I'm busy a little bit 👨🏼‍💻</StyledMessage>
-            </StyledMessageWrp>
-            <StyledMessageWrp sender={'friend'}>
-                <StyledMessage>Ok, i'll write u later, gl</StyledMessage>
-            </StyledMessageWrp>
-            <StyledMessageWrp sender={'friend'}>
-                <StyledMessage>Call me at 10a.m</StyledMessage>
-            </StyledMessageWrp>
+            {/*{id}*/}
+            {messages.map(message => {
+                return (
+                    <StyledMessageWrp key={message.id} sender={message.sender}>
+                        <StyledMessage>{message.text}</StyledMessage>
+                    </StyledMessageWrp>
+                )
+            })}
         </StyledMessages>
     );
 };
@@ -28,8 +27,8 @@ const StyledMessages = styled.div`
   flex-direction: column;
   gap: 3px;
 `
-interface StyledMessageWrpType {
-    sender: 'friend' | 'me'
+export interface StyledMessageWrpType {
+    sender: string
 }
 const StyledMessageWrp = styled.div<StyledMessageWrpType>`
   display: flex;

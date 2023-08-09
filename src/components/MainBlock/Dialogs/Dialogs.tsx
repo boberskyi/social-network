@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from "styled-components";
 import {DialogsFriendItm} from "./DialogsFriendItm/DialogsFriendItm";
-import {Outlet, Route, Routes} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 import {MsgSendBox} from "./MsgSendBox/MsgSendBox";
-import {dialogsType} from "../../../App";
+import {dialogsType} from "../../../redux/state";
 
 type DialogsType = {
     dialogs: dialogsType[]
