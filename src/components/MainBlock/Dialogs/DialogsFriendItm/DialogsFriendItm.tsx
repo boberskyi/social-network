@@ -6,17 +6,19 @@ import shape from "../ava_shape.png";
 import styled from "styled-components";
 
 type DialogsFriendItmPropsType = {
-    id: string
+    id: string,
+    name: string,
+    lastLogin: string
 }
 export const DialogsFriendItm:React.FC<DialogsFriendItmPropsType> = (props) => {
     return (
         <StyledDialogsFriendItm to={`/dialogs/${props.id}`}>
             <StyledDialogsFriendItmLeft>
-                <StyledDialogsAvatar src={avatar} alt="Avatar" />
+                <StyledDialogsAvatar src={avatar} alt={props.name} />
             </StyledDialogsFriendItmLeft>
             <StyledDialogsFriendItmRight>
-                <StyledDialogsFriendName>Name Surname</StyledDialogsFriendName>
-                <StyledDialogsFriendLastOnline>2 days ago</StyledDialogsFriendLastOnline>
+                <StyledDialogsFriendName>{props.name}</StyledDialogsFriendName>
+                <StyledDialogsFriendLastOnline>{props.lastLogin}</StyledDialogsFriendLastOnline>
             </StyledDialogsFriendItmRight>
         </StyledDialogsFriendItm>
     );

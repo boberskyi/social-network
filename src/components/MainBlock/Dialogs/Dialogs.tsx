@@ -3,17 +3,24 @@ import styled from "styled-components";
 import {DialogsFriendItm} from "./DialogsFriendItm/DialogsFriendItm";
 import {Outlet, Route, Routes} from "react-router-dom";
 import {MsgSendBox} from "./MsgSendBox/MsgSendBox";
-export const Dialogs = () => {
+import {dialogsType} from "../../../App";
+
+type DialogsType = {
+    dialogs: dialogsType[]
+}
+export const Dialogs:React.FC<DialogsType> = ({dialogs}) => {
     return (
         <StyledDialogs>
             <StyledDialogsFriends>
-                <DialogsFriendItm id={'dfi1'} />
-                <DialogsFriendItm id={'dfi2'} />
-                <DialogsFriendItm id={'dfi3'} />
-                <DialogsFriendItm id={'dfi4'} />
-                <DialogsFriendItm id={'dfi5'} />
-                <DialogsFriendItm id={'dfi6'} />
-                <DialogsFriendItm id={'dfi7'} />
+                {dialogs.map(dialog => {
+                    return (
+                        <DialogsFriendItm key={dialog.id}
+                                          id={dialog.id}
+                                          name={dialog.name}
+                                          lastLogin={dialog.lastLogin}
+                        />
+                    )
+                })}
             </StyledDialogsFriends>
 
             <StyledDialogsMsgs>

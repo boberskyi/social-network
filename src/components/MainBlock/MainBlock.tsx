@@ -6,19 +6,20 @@ import {Dialogs} from "./Dialogs/Dialogs";
 import {PostsFeed} from "./Posts/PostsFeed";
 import {ErrorPage} from "./ErrorPage/ErrorPage";
 import {Messages} from "./Dialogs/Messages/Messages";
-import {postsType} from "../../App";
+import {dialogsType, postsType} from "../../App";
 
 type MainBlockType = {
-    posts: postsType[]
+    posts: postsType[],
+    dialogs: dialogsType[]
 }
-export const MainBlock:React.FC<MainBlockType> = ({posts}) => {
+export const MainBlock:React.FC<MainBlockType> = ({posts, dialogs}) => {
     return (
         <StyledMainBlock>
             <Banner/>
             <StyledMainWrapper>
                 <Routes>
                     <Route path={"/"} element={<PostsFeed posts={posts}/>}/>
-                    <Route path={"/dialogs"} element={<Dialogs/>}>
+                    <Route path={"/dialogs"} element={<Dialogs dialogs={dialogs}/>}>
                         <Route path={":id"} element={<Messages/>}/>
                     </Route>
                     <Route path={"/posts"} element={<PostsFeed posts={posts}/>}/>
