@@ -3,9 +3,10 @@ import {useParams} from "react-router-dom";
 import styled from "styled-components";
 
 export const Messages: React.FC = () => {
-    console.log(useParams())
+    const {id} = useParams();
     return (
         <StyledMessages>
+            {id}
             <StyledMessageWrp sender={'friend'}>
                 <StyledMessage>Hi, how are you?</StyledMessage>
             </StyledMessageWrp>

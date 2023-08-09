@@ -1,17 +1,19 @@
 import React from 'react';
 import {Post} from "./Post/Post";
 import styled from "styled-components";
+import {postsType} from "../../../App";
 
-export const PostsFeed = () => {
+type PostsFeedType = {
+    posts: postsType[]
+}
+export const PostsFeed:React.FC<PostsFeedType> = ({posts}) => {
     return (
         <StyledPostsFeed>
             <div>Top filter</div>
             <div>
                 <h1>Posts</h1>
                 <StyledPostsWrap>
-                    <Post author="Name Surname" date="21.07.2023" />
-                    <Post author="Name2 Surname2" date="20.07.2023" />
-                    <Post author="Name3 Surname3" date="15.07.2023" />
+                    {posts.map(post => <Post key={post.id} author={post.name} date={post.date} />)}
                 </StyledPostsWrap>
             </div>
         </StyledPostsFeed>
