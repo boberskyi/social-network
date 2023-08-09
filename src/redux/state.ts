@@ -45,3 +45,8 @@ export const state = {
         ]
     }
 }
+
+export const addMessage = (newText:string) => {
+    const newMsg = {id: v1(), sender: 'me', text: newText}
+    state.dialogsPage.messages.push(newMsg);
+}

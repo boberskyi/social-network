@@ -1,11 +1,20 @@
-import React from 'react';
-import styled from "styled-components";
+import React, {createRef, RefObject} from 'react';
+import styled from 'styled-components';
 
-export const MsgSendBox = () => {
+type MsgSendBoxType = {
+    addMessage: (newText:string) => void
+}
+export const MsgSendBox:React.FC<MsgSendBoxType> = ({addMessage}) => {
+    const msgInput: RefObject<HTMLTextAreaElement> = createRef();
+
+    const onBtnSendClick = () => {
+        msgInput.current && addMessage(msgInput.current.value)
+    }
+
     return (
         <StyledMsgSendBox>
-            <input type="text"/>
-            <button>Send</button>
+            <textarea ref={msgInput}></textarea>
+            <button onClick={onBtnSendClick}>Send</button>
         </StyledMsgSendBox>
     );
 };
