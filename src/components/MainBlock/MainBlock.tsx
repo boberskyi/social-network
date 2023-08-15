@@ -6,7 +6,7 @@ import {Dialogs} from "./Dialogs/Dialogs";
 import {PostsFeed} from "./Posts/PostsFeed";
 import {ErrorPage} from "./ErrorPage/ErrorPage";
 import {Messages} from "./Dialogs/Messages/Messages";
-import {dialogsPageType, postsType, updateNewMessage} from "../../redux/state";
+import {dialogsPageType, postsType} from "../../redux/state";
 
 type MainBlockType = {
     posts: postsType[],

@@ -3,13 +3,14 @@ import './App.css';
 import {NavigationLeft} from "./components/NavigationLeft/NavigationLeft";
 import {MainBlock} from "./components/MainBlock/MainBlock";
 import {BrowserRouter} from "react-router-dom";
-import {stateType, updateNewMessage} from "./redux/state";
-import {addMessage} from "./redux/state";
+import {stateType} from "./redux/state";
 
 type AppType = {
-    state: stateType
+    state: stateType,
+    addMessage: (newText:string) => void,
+    updateNewMessage: (newMessage:string) => void
 }
-const App:React.FC<AppType> = ({state}) => {
+const App:React.FC<AppType> = ({state,addMessage,updateNewMessage}) => {
     return (
         <BrowserRouter>
             <div className="App">
