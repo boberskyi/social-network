@@ -6,21 +6,25 @@ import {Dialogs} from "./Dialogs/Dialogs";
 import {PostsFeed} from "./Posts/PostsFeed";
 import {ErrorPage} from "./ErrorPage/ErrorPage";
 import {Messages} from "./Dialogs/Messages/Messages";
-import {dialogsPageType, postsType} from "../../redux/state";
+import {dialogsPageType, postsType, updateNewMessage} from "../../redux/state";
 
 type MainBlockType = {
     posts: postsType[],
-    dialogsPage: dialogsPageType
+    dialogsPage: dialogsPageType,
     addMessage: (newText:string) => void
+    updateNewMessage: (newMessage:string) => void
 }
-export const MainBlock:React.FC<MainBlockType> = ({posts, dialogsPage, addMessage}) => {
+export const MainBlock:React.FC<MainBlockType> = ({posts, dialogsPage, addMessage, updateNewMessage}) => {
     return (
         <StyledMainBlock>
             <Banner/>
             <StyledMainWrapper>
                 <Routes>
                     <Route path={"/"} element={<PostsFeed posts={posts}/>}/>
-                    <Route path={"/dialogs"} element={<Dialogs dialogs={dialogsPage.dialogs} addMessage={(newText) => addMessage(newText)} />}>
+                    <Route path={"/dialogs"} element={<Dialogs dialogs={dialogsPage.dialogs}
+                                                               newMessageText={dialogsPage.newMessageText}
+                                                               updateNewMessage={(newMessage) => updateNewMessage(newMessage)}
+                                                               addMessage={(newText) => addMessage(newText)} />}>
                         <Route path={":id"} element={<Messages messages={dialogsPage.messages}/>}/>
                     </Route>
                     <Route path={"/posts"} element={<PostsFeed posts={posts}/>}/>

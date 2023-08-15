@@ -1,5 +1,8 @@
 import {v1} from "uuid";
-import {StyledMessageWrpType} from "../components/MainBlock/Dialogs/Messages/Messages";
+
+let rerenderEntireTree = (state:stateType) => {
+    console.log('State changed');
+}
 
 export type postsType = {
     id: string,
@@ -18,7 +21,8 @@ export type messagesType = {
 }
 export type dialogsPageType = {
     dialogs: dialogsType[],
-    messages: messagesType[]
+    messages: messagesType[],
+    newMessageText: string
 }
 export type stateType = {
     posts: postsType[],
@@ -42,11 +46,23 @@ export const state = {
             {id: v1(), sender: 'me', text: 'I\'m fine. Sry, I\'m busy a little bit 👨🏼‍💻'},
             {id: v1(), sender: 'friend', text: 'Ok, i\'ll write u later, gl'},
             {id: v1(), sender: 'friend', text: 'Call me at 10a.m'},
-        ]
+        ],
+        newMessageText: 'test text'
     }
 }
 
 export const addMessage = (newText:string) => {
     const newMsg = {id: v1(), sender: 'me', text: newText}
     state.dialogsPage.messages.push(newMsg);
+    state.dialogsPage.newMessageText = '';
+    rerenderEntireTree(state);
+}
+
+export const updateNewMessage = (newMessage:string) => {
+    state.dialogsPage.newMessageText = newMessage;
+    rerenderEntireTree(state);
+}
+
+export const subscribe = (observer:(state:stateType) => void) => {
+    rerenderEntireTree = observer;
 }

@@ -7,9 +7,11 @@ import {dialogsType} from "../../../redux/state";
 
 type DialogsType = {
     dialogs: dialogsType[],
-    addMessage: (newText:string) => void
+    addMessage: (newText:string) => void,
+    newMessageText: string,
+    updateNewMessage: (newMessage:string) => void
 }
-export const Dialogs:React.FC<DialogsType> = ({dialogs, addMessage}) => {
+export const Dialogs:React.FC<DialogsType> = ({dialogs, addMessage, newMessageText,updateNewMessage}) => {
     return (
         <StyledDialogs>
             <StyledDialogsFriends>
@@ -26,7 +28,7 @@ export const Dialogs:React.FC<DialogsType> = ({dialogs, addMessage}) => {
 
             <StyledDialogsMsgs>
                 <Outlet />
-                <MsgSendBox addMessage={(newText) => addMessage(newText)} />
+                <MsgSendBox addMessage={(newText) => addMessage(newText)} updateNewMessage={(newMessageText) => updateNewMessage(newMessageText)} newMessageText={newMessageText}/>
             </StyledDialogsMsgs>
         </StyledDialogs>
     );
