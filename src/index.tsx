@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 
-let rerenderEntireTree = (state:stateType) => {
+let rerenderEntireTree = () => {
     root.render(
         <React.StrictMode>
             <App state={store.getState()}
@@ -20,7 +20,7 @@ let rerenderEntireTree = (state:stateType) => {
     );
 }
 
-rerenderEntireTree(store.getState());
+rerenderEntireTree();
 
 store.subscribe(rerenderEntireTree);
 
