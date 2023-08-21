@@ -24,14 +24,12 @@ export type stateType = {
     posts: postsType[],
     dialogsPage: dialogsPageType
 }
-
 export type storeType = {
     _state: stateType,
     getState: () => stateType,
     _callSubscriber: (state:stateType) => void,
-    addMessage: (newText:string) => void,
-    updateNewMessage: (newMessage:string) => void,
-    subscribe: (observer: () => void) => void
+    subscribe: (observer: () => void) => void,
+    dispatch: (action:any) => void
 }
 
 
@@ -59,23 +57,24 @@ export let store:storeType = {
             newMessageText: 'test text'
         }
     },
-    getState() {
-        return this._state
-    },
     _callSubscriber(state:stateType) {
         console.log('State changed');
     },
-    addMessage (newText:string) {
-        const newMsg = {id: v1(), sender: 'me', text: newText}
-        this._state.dialogsPage.messages.push(newMsg);
-        this._state.dialogsPage.newMessageText = '';
-        this._callSubscriber(this._state);
-    },
-    updateNewMessage (newMessage:string) {
-        this._state.dialogsPage.newMessageText = newMessage;
-        this._callSubscriber(this._state);
+    getState() {
+        return this._state
     },
     subscribe(observer:(state:stateType) => void) {
         this._callSubscriber = observer;
+    },
+    dispatch(action:any) {
+        if(action.type === 'ADD-MESSAGE') {
+            const newMsg = {id: v1(), sender: 'me', text: action.newText}
+            this._state.dialogsPage.messages.push(newMsg);
+            this._state.dialogsPage.newMessageText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-MESSAGE') {
+            this._state.dialogsPage.newMessageText = action.newMessage;
+            this._callSubscriber(this._state);
+        }
     }
 };

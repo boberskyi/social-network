@@ -11,10 +11,9 @@ import {dialogsPageType, postsType} from "../../redux/state";
 type MainBlockType = {
     posts: postsType[],
     dialogsPage: dialogsPageType,
-    addMessage: (newText:string) => void
-    updateNewMessage: (newMessage:string) => void
+    dispatch: (action:string) => void
 }
-export const MainBlock:React.FC<MainBlockType> = ({posts, dialogsPage, addMessage, updateNewMessage}) => {
+export const MainBlock:React.FC<MainBlockType> = ({posts, dialogsPage, dispatch}) => {
     return (
         <StyledMainBlock>
             <Banner/>
@@ -23,8 +22,7 @@ export const MainBlock:React.FC<MainBlockType> = ({posts, dialogsPage, addMessag
                     <Route path={"/"} element={<PostsFeed posts={posts}/>}/>
                     <Route path={"/dialogs"} element={<Dialogs dialogs={dialogsPage.dialogs}
                                                                newMessageText={dialogsPage.newMessageText}
-                                                               updateNewMessage={(newMessage) => updateNewMessage(newMessage)}
-                                                               addMessage={(newText) => addMessage(newText)} />}>
+                                                               dispatch={dispatch} />}>
                         <Route path={":id"} element={<Messages messages={dialogsPage.messages}/>}/>
                     </Route>
                     <Route path={"/posts"} element={<PostsFeed posts={posts}/>}/>

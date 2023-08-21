@@ -2,19 +2,19 @@ import React, {ChangeEvent, createRef, RefObject} from 'react';
 import styled from 'styled-components';
 
 type MsgSendBoxType = {
-    addMessage: (newText:string) => void,
-    newMessageText: string,
-    updateNewMessage: (newMessageText:string) => void
+    dispatch: (action:any) => void
+    newMessageText: string
 }
-export const MsgSendBox:React.FC<MsgSendBoxType> = ({addMessage, newMessageText,updateNewMessage}) => {
+export const MsgSendBox:React.FC<MsgSendBoxType> = ({dispatch, newMessageText}) => {
     const msgInput: RefObject<HTMLTextAreaElement> = createRef();
 
     const onBtnSendClick = () => {
-        msgInput.current && addMessage(newMessageText);
+        let newMsg = msgInput.current?.value;
+        dispatch({type: 'ADD-MESSAGE', newText: newMsg});
     }
 
     const onTextareaChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        updateNewMessage(e.currentTarget.value);
+        dispatch({type:'UPDATE-NEW-MESSAGE', newText: e.currentTarget.value });
     }
 
     return (

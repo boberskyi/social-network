@@ -7,18 +7,16 @@ import {stateType} from "./redux/state";
 
 type AppType = {
     state: stateType,
-    addMessage: (newText:string) => void,
-    updateNewMessage: (newMessage:string) => void
+    dispatch: (action:any) => void
 }
-const App:React.FC<AppType> = ({state,addMessage,updateNewMessage}) => {
+const App:React.FC<AppType> = ({state,dispatch}) => {
     return (
         <BrowserRouter>
             <div className="App">
                 <NavigationLeft/>
                 <MainBlock posts={state.posts}
                            dialogsPage={state.dialogsPage}
-                           updateNewMessage={(newMessage) => updateNewMessage(newMessage)}
-                           addMessage={(newText) => addMessage(newText)}/>
+                           dispatch={dispatch}/>
             </div>
         </BrowserRouter>
     );
