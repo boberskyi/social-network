@@ -1,10 +1,13 @@
 import {v1} from "uuid";
-import {AllActionsType, dialogsReducer} from "./dialogs-reducer";
+import {DialogsActionsType, dialogsReducer} from "./dialogs-reducer";
+import {postsReducer} from "./posts-reducer";
 
 export type PostsType = {
     id: string,
     name: string,
-    date: string
+    date: string,
+    likes: number,
+    likesActive: boolean
 }
 export type DialogsType = {
     id: string,
@@ -30,14 +33,14 @@ export type StoreType = {
     getState: () => StateType,
     _callSubscriber: (state:StateType) => void,
     subscribe: (observer: () => void) => void,
-    dispatch: (action:AllActionsType) => void
+    dispatch: (action:DialogsActionsType) => void
 }
 export let store:StoreType = {
     _state: {
         posts: [
-            {id: v1(), name: 'Name Surname', date: '21.07.2023'},
-            {id: v1(), name: 'Name2 Surname2', date: '20.07.2023'},
-            {id: v1(), name: 'Name3 Surname3', date: '15.07.2023'},
+            {id: v1(), name: 'Name Surname', date: '21.07.2023', likes: 4, likesActive: true},
+            {id: v1(), name: 'Name2 Surname2', date: '20.07.2023', likes: 1, likesActive: false},
+            {id: v1(), name: 'Name3 Surname3', date: '15.07.2023', likes: 0, likesActive: false},
         ],
         dialogsPage: {
             dialogs: [
@@ -66,6 +69,7 @@ export let store:StoreType = {
     },
     dispatch(action:any) {
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.posts = postsReducer(this._state.posts, action);
         this._callSubscriber(this._state);
     }
 }

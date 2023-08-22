@@ -1,9 +1,9 @@
 import React, {ChangeEvent, createRef, RefObject} from 'react';
 import styled from 'styled-components';
-import {addMessageAC, AllActionsType, updateNewMessageAC} from "../../../../redux/dialogs-reducer";
+import {addMessageAC, DialogsActionsType, updateNewMessageAC} from "../../../../redux/dialogs-reducer";
 
 type MsgSendBoxType = {
-    dispatch: (action:AllActionsType) => void
+    dispatch: (action:DialogsActionsType) => void
     newMessageText: string
 }
 

@@ -7,12 +7,12 @@ import {PostsFeed} from "./Posts/PostsFeed";
 import {ErrorPage} from "./ErrorPage/ErrorPage";
 import {Messages} from "./Dialogs/Messages/Messages";
 import {DialogsPageType, PostsType} from "../../redux/state";
-import {AllActionsType} from "../../redux/dialogs-reducer";
+import {DialogsActionsType} from "../../redux/dialogs-reducer";
 
 type MainBlockType = {
     posts: PostsType[],
     dialogsPage: DialogsPageType,
-    dispatch: (action:AllActionsType) => void
+    dispatch: (action:DialogsActionsType) => void
 }
 export const MainBlock:React.FC<MainBlockType> = ({posts, dialogsPage, dispatch}) => {
     return (
@@ -20,13 +20,13 @@ export const MainBlock:React.FC<MainBlockType> = ({posts, dialogsPage, dispatch}
             <Banner/>
             <StyledMainWrapper>
                 <Routes>
-                    <Route path={"/"} element={<PostsFeed posts={posts}/>}/>
+                    <Route path={"/"} element={<PostsFeed posts={posts} dispatch={dispatch}/>}/>
                     <Route path={"/dialogs"} element={<Dialogs dialogs={dialogsPage.dialogs}
                                                                newMessageText={dialogsPage.newMessageText}
                                                                dispatch={dispatch} />}>
                         <Route path={":id"} element={<Messages messages={dialogsPage.messages}/>}/>
                     </Route>
-                    <Route path={"/posts"} element={<PostsFeed posts={posts}/>}/>
+                    <Route path={"/posts"} element={<PostsFeed posts={posts} dispatch={dispatch}/>}/>
                     <Route path={"/*"} element={<ErrorPage/>}/>
                 </Routes>
             </StyledMainWrapper>

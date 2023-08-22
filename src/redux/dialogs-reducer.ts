@@ -1,7 +1,7 @@
 import {DialogsPageType} from "./state";
 import {v1} from "uuid";
 
-export type AllActionsType = AddMessageACType | UpdateNewMessageACType;
+export type DialogsActionsType = AddMessageACType | UpdateNewMessageACType;
 export type AddMessageACType = ReturnType<typeof addMessageAC>;
 export type UpdateNewMessageACType = ReturnType<typeof updateNewMessageAC>;
 export const addMessageAC = (message:string | undefined) => {
@@ -21,7 +21,7 @@ export const updateNewMessageAC = (newText:string) => {
     } as const
 }
 
-export const dialogsReducer = (state:DialogsPageType, action:AllActionsType):DialogsPageType => {
+export const dialogsReducer = (state:DialogsPageType, action:DialogsActionsType):DialogsPageType => {
     switch(action.type) {
         case 'ADD-MESSAGE': {
             const newMsg = {id: v1(), sender: 'me', text: action.payload.message};

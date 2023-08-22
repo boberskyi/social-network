@@ -4,12 +4,12 @@ import {DialogsFriendItm} from "./DialogsFriendItm/DialogsFriendItm";
 import {Outlet} from "react-router-dom";
 import {MsgSendBox} from "./MsgSendBox/MsgSendBox";
 import {DialogsType} from "../../../redux/state";
-import {AllActionsType} from "../../../redux/dialogs-reducer";
+import {DialogsActionsType} from "../../../redux/dialogs-reducer";
 
 type DialogsCType = {
     dialogs: DialogsType[],
     newMessageText: string,
-    dispatch: (action:AllActionsType) => void
+    dispatch: (action:DialogsActionsType) => void
 }
 export const Dialogs:React.FC<DialogsCType> = ({dialogs, newMessageText, dispatch}) => {
     return (
