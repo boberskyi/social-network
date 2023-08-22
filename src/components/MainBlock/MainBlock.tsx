@@ -6,12 +6,12 @@ import {Dialogs} from "./Dialogs/Dialogs";
 import {PostsFeed} from "./Posts/PostsFeed";
 import {ErrorPage} from "./ErrorPage/ErrorPage";
 import {Messages} from "./Dialogs/Messages/Messages";
-import {dialogsPageType, postsType} from "../../redux/state";
+import {AllActionsType, DialogsPageType, PostsType} from "../../redux/state";
 
 type MainBlockType = {
-    posts: postsType[],
-    dialogsPage: dialogsPageType,
-    dispatch: (action:string) => void
+    posts: PostsType[],
+    dialogsPage: DialogsPageType,
+    dispatch: (action:AllActionsType) => void
 }
 export const MainBlock:React.FC<MainBlockType> = ({posts, dialogsPage, dispatch}) => {
     return (

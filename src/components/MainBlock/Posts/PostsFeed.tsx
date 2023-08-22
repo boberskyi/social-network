@@ -1,10 +1,10 @@
 import React from 'react';
 import {Post} from "./Post/Post";
 import styled from "styled-components";
-import {postsType} from "../../../redux/state";
+import {PostsType} from "../../../redux/state";
 
 type PostsFeedType = {
-    posts: postsType[]
+    posts: PostsType[]
 }
 export const PostsFeed:React.FC<PostsFeedType> = ({posts}) => {
     return (

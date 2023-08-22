@@ -1,10 +1,10 @@
 import React from 'react';
 import {useParams} from "react-router-dom";
 import styled from "styled-components";
-import {messagesType} from "../../../../redux/state";
+import {MessagesType} from "../../../../redux/state";
 
 type MessagesPropsType = {
-    messages: messagesType[]
+    messages: MessagesType[]
 }
 export const Messages: React.FC<MessagesPropsType> = ({messages}) => {
     const {id} = useParams();
