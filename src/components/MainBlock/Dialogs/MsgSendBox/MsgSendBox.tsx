@@ -1,9 +1,9 @@
 import React, {ChangeEvent, createRef, RefObject} from 'react';
 import styled from 'styled-components';
-import {addMessageAC, updateNewMessageAC} from "../../../../redux/state";
+import {addMessageAC, AllActionsType, updateNewMessageAC} from "../../../../redux/dialogs-reducer";
 
 type MsgSendBoxType = {
-    dispatch: (action:any) => void
+    dispatch: (action:AllActionsType) => void
     newMessageText: string
 }
 
@@ -11,8 +11,7 @@ export const MsgSendBox:React.FC<MsgSendBoxType> = ({dispatch, newMessageText}) 
     const msgInput: RefObject<HTMLTextAreaElement> = createRef();
 
     const onBtnSendClick = () => {
-        let newMsg = msgInput.current?.value;
-        dispatch(addMessageAC(newMsg));
+        dispatch(addMessageAC(newMessageText));
     }
 
     const onTextareaChange = (e:ChangeEvent<HTMLTextAreaElement>) => {

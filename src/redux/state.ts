@@ -1,4 +1,5 @@
 import {v1} from "uuid";
+import {AllActionsType, dialogsReducer} from "./dialogs-reducer";
 
 export type PostsType = {
     id: string,
@@ -13,7 +14,7 @@ export type DialogsType = {
 export type MessagesType = {
     id: string,
     sender: string ,
-    text: string
+    text: string | undefined
 }
 export type DialogsPageType = {
     dialogs: DialogsType[],
@@ -31,10 +32,6 @@ export type StoreType = {
     subscribe: (observer: () => void) => void,
     dispatch: (action:AllActionsType) => void
 }
-export type AllActionsType = AddMessageACType | UpdateNewMessageACType;
-export type AddMessageACType = ReturnType<typeof addMessageAC>;
-export type UpdateNewMessageACType = ReturnType<typeof updateNewMessageAC>;
-
 export let store:StoreType = {
     _state: {
         posts: [
@@ -55,7 +52,7 @@ export let store:StoreType = {
                 {id: v1(), sender: 'friend', text: 'Ok, i\'ll write u later, gl'},
                 {id: v1(), sender: 'friend', text: 'Call me at 10a.m'},
             ],
-            newMessageText: 'test text'
+            newMessageText: ''
         }
     },
     _callSubscriber(state:StateType) {
@@ -68,31 +65,7 @@ export let store:StoreType = {
         this._callSubscriber = observer;
     },
     dispatch(action:any) {
-        if(action.type === 'ADD-MESSAGE') {
-            const newMsg = {id: v1(), sender: 'me', text: action.payload.message}
-            this._state.dialogsPage.messages.push(newMsg);
-            this._state.dialogsPage.newMessageText = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-MESSAGE') {
-            this._state.dialogsPage.newMessageText = action.payload.newText;
-            this._callSubscriber(this._state);
-        }
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._callSubscriber(this._state);
     }
-};
-
-export const addMessageAC = (message:string | undefined) => {
-    return {
-        type: 'ADD-MESSAGE',
-        payload: {
-            message
-        }
-    } as const
-}
-export const updateNewMessageAC = (newText:string) => {
-    return {
-        type: 'UPDATE-NEW-MESSAGE',
-        payload: {
-            newText
-        }
-    } as const
 }

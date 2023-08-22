@@ -3,7 +3,8 @@ import './App.css';
 import {NavigationLeft} from "./components/NavigationLeft/NavigationLeft";
 import {MainBlock} from "./components/MainBlock/MainBlock";
 import {BrowserRouter} from "react-router-dom";
-import {AllActionsType, StateType} from "./redux/state";
+import {StateType} from "./redux/state";
+import {AllActionsType} from "./redux/dialogs-reducer";
 
 type AppType = {
     state: StateType,
