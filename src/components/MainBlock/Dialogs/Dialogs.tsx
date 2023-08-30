@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {DialogsFriendItm} from "./DialogsFriendItm/DialogsFriendItm";
 import {Outlet} from "react-router-dom";
 import {MsgSendBox} from "./MsgSendBox/MsgSendBox";
-import {DialogsType} from "../../../redux/state";
+import {DialogsType} from "../../../redux/store";
 import {DialogsActionsType} from "../../../redux/dialogs-reducer";
 
 type DialogsCType = {

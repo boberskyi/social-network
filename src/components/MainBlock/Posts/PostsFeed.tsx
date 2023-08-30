@@ -1,7 +1,7 @@
 import React from 'react';
 import {Post} from "./Post/Post";
 import styled from "styled-components";
-import {PostsType} from "../../../redux/state";
+import {PostsType} from "../../../redux/store";
 import {DialogsActionsType} from "../../../redux/dialogs-reducer";
 
 type PostsFeedType = {

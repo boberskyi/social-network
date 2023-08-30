@@ -1,5 +1,6 @@
-import {DialogsPageType} from "./state";
+import {DialogsPageType} from "./store";
 import {v1} from "uuid";
+import {PostsActionsType} from "./posts-reducer";
 
 export type DialogsActionsType = AddMessageACType | UpdateNewMessageACType;
 export type AddMessageACType = ReturnType<typeof addMessageAC>;
@@ -21,7 +22,17 @@ export const updateNewMessageAC = (newText:string) => {
     } as const
 }
 
-export const dialogsReducer = (state:DialogsPageType, action:DialogsActionsType):DialogsPageType => {
+const initialState:DialogsPageType =  {
+    dialogs: [
+        {id: v1(), name: 'Name Surname', lastLogin: '15 minutes ago'},
+    ],
+        messages: [
+        {id: v1(), sender: 'friend', text: 'Hi, how are you?'},
+    ],
+        newMessageText: ''
+};
+
+export const dialogsReducer = (state = initialState, action:PostsActionsType | DialogsActionsType):DialogsPageType => {
     switch(action.type) {
         case 'ADD-MESSAGE': {
             const newMsg = {id: v1(), sender: 'me', text: action.payload.message};

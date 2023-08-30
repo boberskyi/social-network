@@ -1,6 +1,6 @@
 import {v1} from "uuid";
 import {DialogsActionsType, dialogsReducer} from "./dialogs-reducer";
-import {postsReducer} from "./posts-reducer";
+import {PostsActionsType, postsReducer} from "./posts-reducer";
 
 export type PostsType = {
     id: string,
@@ -67,9 +67,12 @@ export let store:StoreType = {
     subscribe(observer:(state:StateType) => void) {
         this._callSubscriber = observer;
     },
-    dispatch(action:any) {
+    dispatch(action:PostsActionsType | DialogsActionsType) {
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
         this._state.posts = postsReducer(this._state.posts, action);
         this._callSubscriber(this._state);
     }
 }
+
+// @ts-ignore
+window.store = store;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {useParams} from "react-router-dom";
 import styled from "styled-components";
-import {MessagesType} from "../../../../redux/state";
+import {MessagesType} from "../../../../redux/store";
 
 type MessagesPropsType = {
     messages: MessagesType[]
