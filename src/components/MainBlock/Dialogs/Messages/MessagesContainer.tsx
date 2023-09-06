@@ -1,14 +1,25 @@
 import {Messages} from "./Messages";
-import {StateType} from "../../../../redux/store";
 import {connect} from "react-redux";
+import {AppStateType} from "../../../../redux/redux-store";
+import {MessagesType} from "../../../../redux/dialogs-reducer";
+import {Dispatch} from "redux";
 
 // const {id} = useParams();
-let mapStateToProps = (state:StateType) => {
+
+type MapStateToPropsType = {
+    messages: MessagesType[]
+}
+
+type MapDispatchToProsType = {
+
+}
+
+let mapStateToProps = (state:AppStateType):MapStateToPropsType => {
     return {
         messages: state.dialogsPage.messages
     }
 }
-let mapDispatchToPros = (dispatch:any) => {
+let mapDispatchToPros = (dispatch:Dispatch):MapDispatchToProsType => {
     return {
 
     }

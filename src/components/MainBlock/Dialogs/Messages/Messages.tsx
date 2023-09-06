@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {MessagesType} from "../../../../redux/store";
+import {MessagesType} from "../../../../redux/dialogs-reducer";
 
 type MessagesComponentType = {
     messages: MessagesType[]

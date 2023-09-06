@@ -3,9 +3,8 @@ import './App.css';
 import {NavigationLeft} from "./components/NavigationLeft/NavigationLeft";
 import {MainBlock} from "./components/MainBlock/MainBlock";
 import {BrowserRouter} from "react-router-dom";
-import {StateType} from "./redux/store";
 
-const App = () => {
+const App:React.FC = () => {
     return (
         <BrowserRouter>
             <div className="App">

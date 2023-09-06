@@ -2,8 +2,8 @@ import React from 'react';
 import styled from "styled-components";
 import {DialogsFriendItm} from "./DialogsFriendItm/DialogsFriendItm";
 import {Outlet} from "react-router-dom";
-import {DialogsType} from "../../../redux/store";
 import {MsgSendBox} from "./MsgSendBox/MsgSendBox";
+import {DialogsType} from "../../../redux/dialogs-reducer";
 
 type DialogsComponentType = {
     newMessage:string | undefined,

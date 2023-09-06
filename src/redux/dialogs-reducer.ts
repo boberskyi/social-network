@@ -1,10 +1,24 @@
-import {DialogsPageType} from "./store";
 import {v1} from "uuid";
 import {PostsActionsType} from "./posts-reducer";
 
 export type DialogsActionsType = AddMessageACType | UpdateNewMessageACType;
 export type AddMessageACType = ReturnType<typeof addMessageAC>;
 export type UpdateNewMessageACType = ReturnType<typeof updateNewMessageAC>;
+export type DialogsType = {
+    id: string,
+    name: string,
+    lastLogin: string
+}
+export type MessagesType = {
+    id: string,
+    sender: string ,
+    text: string | undefined
+}
+export type DialogsPageType = {
+    dialogs: DialogsType[],
+    messages: MessagesType[],
+    newMessageText: string
+}
 export const addMessageAC = () => {
     return {
         type: 'ADD-MESSAGE'

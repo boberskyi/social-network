@@ -7,7 +7,7 @@ import {PostsFeedContainer} from "./Posts/PostsFeedContainer";
 import {DialogsContainer} from "./Dialogs/DialogsContainer";
 import {MessagesContainer} from "./Dialogs/Messages/MessagesContainer";
 
-export const MainBlock = () => {
+export const MainBlock:React.FC = () => {
     return (
         <StyledMainBlock>
             <Banner/>

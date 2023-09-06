@@ -8,7 +8,7 @@ import {TfiGallery} from "react-icons/tfi";
 import {LiaVideoSolid} from "react-icons/lia";
 import {Link, NavLink} from "react-router-dom";
 
-export const NavigationLeft = () => {
+export const NavigationLeft:React.FC = () => {
     return (
         <StyledNavLeft>
             <StyledNavLeftTop to={"/"}>
