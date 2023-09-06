@@ -4,7 +4,7 @@ import {DialogsActionsType} from "./dialogs-reducer";
 
 export type PostsActionsType = UpdateLikesACType;
 export type UpdateLikesACType = ReturnType<typeof updateLikesAC>;
-export const updateLikesAC = (postId:string) => {
+export const updateLikesAC = (postId: string) => {
     return {
         type: 'UPDATE-LIKES',
         payload: {
@@ -13,22 +13,18 @@ export const updateLikesAC = (postId:string) => {
     } as const
 }
 
-let initialState:PostsType[] = [
-        {id: v1(), name: 'Name Surname', date: '21.07.2023', likes: 4, likesActive: true},
-    ];
+let initialState: PostsType[] = [
+    {id: v1(), name: 'Name Surname', date: '21.07.2023', likes: 4, likesActive: true},
+];
 
-export const postsReducer = (state = initialState, action:PostsActionsType | DialogsActionsType):PostsType[] => {
-    switch(action.type) {
+export const postsReducer = (state = initialState, action: PostsActionsType | DialogsActionsType): PostsType[] => {
+    switch (action.type) {
         case 'UPDATE-LIKES': {
-            let post:PostsType | undefined = state.find((el:any) => el.id === action.payload.postId);
-
-            if (post) {
-                post.likes += post.likesActive ? -1 : 1;
-                post.likesActive = !post.likesActive;
-            }
-
-            return state;
+            return state.map(post => post.id === action.payload.postId
+                ? {...post, likes: post.likesActive ? post.likes - 1 : post.likes + 1, likesActive: !post.likesActive}
+                : post)
         }
-        default: return state;
+        default:
+            return state;
     }
 }

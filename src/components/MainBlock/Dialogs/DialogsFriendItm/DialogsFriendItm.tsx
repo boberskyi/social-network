@@ -5,20 +5,22 @@ import roundShape from "../ava_round_shape.png";
 import shape from "../ava_shape.png";
 import styled from "styled-components";
 
-type DialogsFriendItmPropsType = {
-    id: string,
-    name: string,
-    lastLogin: string
+type DialogsFriendItmComponentType = {
+    dialog: {
+        id: string,
+        name: string,
+        lastLogin: string
+    }
 }
-export const DialogsFriendItm:React.FC<DialogsFriendItmPropsType> = (props) => {
+export const DialogsFriendItm:React.FC<DialogsFriendItmComponentType> = (props) => {
     return (
-        <StyledDialogsFriendItm to={`/dialogs/${props.id}`}>
+        <StyledDialogsFriendItm to={`/dialogs/${props.dialog.id}`}>
             <StyledDialogsFriendItmLeft>
-                <StyledDialogsAvatar src={avatar} alt={props.name} />
+                <StyledDialogsAvatar src={avatar} alt={props.dialog.name} />
             </StyledDialogsFriendItmLeft>
             <StyledDialogsFriendItmRight>
-                <StyledDialogsFriendName>{props.name}</StyledDialogsFriendName>
-                <StyledDialogsFriendLastOnline>{props.lastLogin}</StyledDialogsFriendLastOnline>
+                <StyledDialogsFriendName>{props.dialog.name}</StyledDialogsFriendName>
+                <StyledDialogsFriendLastOnline>{props.dialog.lastLogin}</StyledDialogsFriendLastOnline>
             </StyledDialogsFriendItmRight>
         </StyledDialogsFriendItm>
     );

@@ -1,17 +1,15 @@
 import React from 'react';
-import {useParams} from "react-router-dom";
 import styled from "styled-components";
 import {MessagesType} from "../../../../redux/store";
 
-type MessagesPropsType = {
+type MessagesComponentType = {
     messages: MessagesType[]
 }
-export const Messages: React.FC<MessagesPropsType> = ({messages}) => {
-    const {id} = useParams();
+export const Messages: React.FC<MessagesComponentType> = ({...props}) => {
     return (
         <StyledMessages>
             {/*{id}*/}
-            {messages.map(message => {
+            {props.messages.map(message => {
                 return (
                     <StyledMessageWrp key={message.id} sender={message.sender}>
                         <StyledMessage>{message.text}</StyledMessage>

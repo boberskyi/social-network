@@ -2,31 +2,22 @@ import React from 'react';
 import {Banner} from "./Banner/Banner";
 import styled from "styled-components";
 import {Route, Routes} from "react-router-dom";
-import {Dialogs} from "./Dialogs/Dialogs";
-import {PostsFeed} from "./Posts/PostsFeed";
 import {ErrorPage} from "./ErrorPage/ErrorPage";
-import {Messages} from "./Dialogs/Messages/Messages";
-import {DialogsPageType, PostsType} from "../../redux/store";
-import {DialogsActionsType} from "../../redux/dialogs-reducer";
+import {PostsFeedContainer} from "./Posts/PostsFeedContainer";
+import {DialogsContainer} from "./Dialogs/DialogsContainer";
+import {MessagesContainer} from "./Dialogs/Messages/MessagesContainer";
 
-type MainBlockType = {
-    posts: PostsType[],
-    dialogsPage: DialogsPageType,
-    dispatch: (action:DialogsActionsType) => void
-}
-export const MainBlock:React.FC<MainBlockType> = ({posts, dialogsPage, dispatch}) => {
+export const MainBlock = () => {
     return (
         <StyledMainBlock>
             <Banner/>
             <StyledMainWrapper>
                 <Routes>
-                    <Route path={"/"} element={<PostsFeed posts={posts} dispatch={dispatch}/>}/>
-                    <Route path={"/dialogs"} element={<Dialogs dialogs={dialogsPage.dialogs}
-                                                               newMessageText={dialogsPage.newMessageText}
-                                                               dispatch={dispatch} />}>
-                        <Route path={":id"} element={<Messages messages={dialogsPage.messages}/>}/>
+                    <Route path={"/"} element={<PostsFeedContainer/>}/>
+                    <Route path={"/dialogs"} element={<DialogsContainer />}>
+                        <Route path={":id"} element={<MessagesContainer/>}/>
                     </Route>
-                    <Route path={"/posts"} element={<PostsFeed posts={posts} dispatch={dispatch}/>}/>
+                    <Route path={"/posts"} element={<PostsFeedContainer/>}/>
                     <Route path={"/*"} element={<ErrorPage/>}/>
                 </Routes>
             </StyledMainWrapper>

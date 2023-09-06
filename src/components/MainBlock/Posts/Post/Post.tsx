@@ -1,27 +1,27 @@
 import React from 'react';
 import styled from "styled-components";
-import {updateLikesAC} from "../../../../redux/posts-reducer";
 import {AiFillHeart, AiOutlineHeart} from "react-icons/ai";
 
 type PostPropsType = {
-    postId: string,
-    author: string,
-    date: string
-    likes: number,
-    likesActive: boolean,
-    dispatch: (action: any) => void
-}
-export const Post:React.FC<PostPropsType> = ({dispatch, ...props}) => {
-    const onLikeClick = () => {
-        dispatch(updateLikesAC(props.postId));
+    onLikeClick: (postId:string) => void,
+    post: {
+        id:string,
+        name: string,
+        date: string
+        likes: number,
+        likesActive: boolean
     }
+}
+export const Post:React.FC<PostPropsType> = ({...props}) => {
+    const onLikeClick = () => props.onLikeClick(props.post.id);
+
     return (
         <StyledPost>
-            <p>{props.author}</p>
-            <p>{props.date}</p>
+            <p>{props.post.name}</p>
+            <p>{props.post.date}</p>
             <div>
-                <p>Likes: {props.likes}</p>
-                <span onClick={onLikeClick}>{props.likesActive ? <AiFillHeart/> : <AiOutlineHeart/>} </span>
+                <p>Likes: {props.post.likes}</p>
+                <span onClick={onLikeClick}>{props.post.likesActive ? <AiFillHeart/> : <AiOutlineHeart/>} </span>
             </div>
 
         </StyledPost>

@@ -2,33 +2,30 @@ import React from 'react';
 import styled from "styled-components";
 import {DialogsFriendItm} from "./DialogsFriendItm/DialogsFriendItm";
 import {Outlet} from "react-router-dom";
-import {MsgSendBox} from "./MsgSendBox/MsgSendBox";
 import {DialogsType} from "../../../redux/store";
-import {DialogsActionsType} from "../../../redux/dialogs-reducer";
+import {MsgSendBox} from "./MsgSendBox/MsgSendBox";
 
-type DialogsCType = {
+type DialogsComponentType = {
+    newMessage:string | undefined,
     dialogs: DialogsType[],
-    newMessageText: string,
-    dispatch: (action:DialogsActionsType) => void
+    onBtnSendClick: () => void,
+    onTextareaChange: (newText:string) => void
 }
-export const Dialogs:React.FC<DialogsCType> = ({dialogs, newMessageText, dispatch}) => {
+export const Dialogs:React.FC<DialogsComponentType> = ({...props}) => {
     return (
         <StyledDialogs>
             <StyledDialogsFriends>
-                {dialogs.map(dialog => {
-                    return (
-                        <DialogsFriendItm key={dialog.id}
-                                          id={dialog.id}
-                                          name={dialog.name}
-                                          lastLogin={dialog.lastLogin}
-                        />
-                    )
+                {props.dialogs.map(dialog => {
+                    return <DialogsFriendItm key={dialog.id} dialog={dialog}/>
                 })}
             </StyledDialogsFriends>
 
             <StyledDialogsMsgs>
                 <Outlet />
-                <MsgSendBox dispatch={dispatch} newMessageText={newMessageText}/>
+                <MsgSendBox newMessageText={props.newMessage}
+                            onBtnSendClick={props.onBtnSendClick}
+                            onTextareaChange={props.onTextareaChange}
+                />
             </StyledDialogsMsgs>
         </StyledDialogs>
     );
